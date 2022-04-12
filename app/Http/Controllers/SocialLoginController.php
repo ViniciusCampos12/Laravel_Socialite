@@ -18,13 +18,23 @@ class SocialLoginController extends Controller
         $this->middleware('guest');
     }
 
-    //redireciona o usuário para o site de login do provider
+    /**
+     * redireciona o usuário para o site de login do provider
+     *
+     * @param [type] $provider - recebe a rede social escolhida pelo cliente.
+     * @return void
+     */
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
     }
 
-    //método onde o provider redireciona o usuário para a aplicação novamente e é realizado cadastro e login
+    /**
+     * método onde o provider redireciona o usuário para a aplicação novamente e é realizado cadastro e login
+     *
+     * @param [string] $provider - recebe a rede social escolhida pelo cliente.
+     * @return void
+     */
     public function handleProviderCallback($provider)
     {
         $providerUser = Socialite::driver($provider)->user();
